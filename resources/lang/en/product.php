@@ -2,17 +2,18 @@
 
 return [
     // Labels
-    'product'       => 'Product',
-    'list'          => 'Product List',
-    'search'        => 'Search Product',
-    'search_text'   => 'Name ...',
-    'all'           => 'All Product',
-    'select'        => 'Select Product',
-    'detail'        => 'Product Detail',
-    'not_found'     => 'Product not found.',
-    'empty'         => 'Product is empty.',
-    'back_to_show'  => 'Back to Product Detail',
-    'back_to_index' => 'Back to Product List',
+    'product'         => 'Product',
+    'list'            => 'Product List',
+    'search'          => 'Search Product',
+    'search_text'     => 'Name ...',
+    'all'             => 'All Product',
+    'select'          => 'Select Product',
+    'detail'          => 'Product Detail',
+    'not_found'       => 'Product not found.',
+    'empty'           => 'Product is empty.',
+    'back_to_show'    => 'Back to Product Detail',
+    'back_to_index'   => 'Back to Product List',
+    'stock_histories' => 'Stock History',
 
     // Actions
     'create'         => 'Create new Product',

@@ -37,6 +37,29 @@
                 <input type="submit" name="subtract_stock"  class="btn btn-danger" value="{{ __('product.subtract_stock') }}">
             </div>
         </form>
+        <div class="card">
+            <div class="card-header">{{ __('product.stock_histories') }}</div>
+            <table class="table table-sm table-responsive-sm table-hover">
+                <thead>
+                    <tr>
+                        <th>{{ __('app.date_time') }}</th>
+                        <th class="text-right">{{ __('product.amount') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($product->stockHistories as $stockHistory)
+                        <tr>
+                            <td>{{ $stockHistory->created_at }}</td>
+                            <td class="text-right">{{ $stockHistory->amount }}</td>
+                        </tr>
+                    @endforeach
+                    <tr>
+                        <th>{{ __('product.current_stock') }}</th>
+                        <th class="text-right">{{ $product->stockHistories->sum('amount') }}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 @endsection

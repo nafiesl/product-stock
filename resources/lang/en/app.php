@@ -6,13 +6,14 @@ return [
     'total'             => 'Total',
     'action'            => 'Actions',
     'show_detail_title' => 'View :name :type detail',
+    'date_time'         => 'Date Time',
 
     // Actions
-    'show'           => 'View Detail',
-    'edit'           => 'Edit',
-    'delete'         => 'Delete',
-    'cancel'         => 'Cancel',
-    'reset'          => 'Reset',
-    'delete_confirm' => 'Are you sure to delete this?',
+    'show'                  => 'View Detail',
+    'edit'                  => 'Edit',
+    'delete'                => 'Delete',
+    'cancel'                => 'Cancel',
+    'reset'                 => 'Reset',
+    'delete_confirm'        => 'Are you sure to delete this?',
     'delete_confirm_button' => 'YES, delete it!',
 ];
