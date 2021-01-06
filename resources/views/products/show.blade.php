@@ -25,6 +25,7 @@
         </div>
     </div>
     <div class="col-md-6">
+        @can('update', $product)
         <form action="{{ route('products.stocks.store', $product) }}" method="post">
             @csrf
             <div class="form-group">
@@ -37,6 +38,7 @@
                 <input type="submit" name="subtract_stock"  class="btn btn-danger" value="{{ __('product.subtract_stock') }}">
             </div>
         </form>
+        @endcan
         <div class="card">
             <div class="card-header">{{ __('product.stock_histories') }}</div>
             <table class="table table-sm table-responsive-sm table-hover">

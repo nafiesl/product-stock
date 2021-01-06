@@ -13,6 +13,7 @@ class ManageProductStocksTest extends BrowserKitTest
     /** @test */
     public function user_can_add_stocks_of_a_product()
     {
+        $this->loginAsUser();
         $product = Product::factory()->create();
 
         $this->visitRoute('products.show', $product);
@@ -35,6 +36,7 @@ class ManageProductStocksTest extends BrowserKitTest
     /** @test */
     public function user_can_subtract_stocks_of_a_product()
     {
+        $this->loginAsUser();
         $product = Product::factory()->create();
 
         $this->visitRoute('products.show', $product);
