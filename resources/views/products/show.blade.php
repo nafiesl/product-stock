@@ -28,6 +28,7 @@
             @csrf
             <input type="number" name="amount" min="1">
             <input type="submit" name="add_stock" value="{{ __('product.add_stock') }}">
+            <input type="submit" name="subtract_stock" value="{{ __('product.subtract_stock') }}">
         </form>
     </div>
 </div>

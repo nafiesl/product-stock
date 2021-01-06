@@ -30,4 +30,25 @@ class ManageProductStocksTest extends BrowserKitTest
             'amount'     => 3,
         ]);
     }
+
+    /** @test */
+    public function user_can_subtract_stocks_of_a_product()
+    {
+        $product = Product::factory()->create();
+
+        $this->visitRoute('products.show', $product);
+        $this->seeText($product->name);
+        $this->seeElement('input', ['name' => 'amount']);
+        $this->seeElement('input', ['name' => 'subtract_stock', 'value' => __('product.subtract_stock')]);
+
+        $this->submitForm(__('product.subtract_stock'), [
+            'amount' => '3',
+        ]);
+
+        $this->seeRouteIs('products.show', $product);
+        $this->seeInDatabase('stock_histories', [
+            'product_id' => $product->id,
+            'amount'     => -3,
+        ]);
+    }
 }
