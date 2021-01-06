@@ -21,6 +21,6 @@ abstract class BrowserKitTest extends BaseTestCase
 
     protected function createUser()
     {
-        return factory(User::class)->create();
+        return User::factory()->create();
     }
 }
