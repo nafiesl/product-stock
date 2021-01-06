@@ -12,6 +12,7 @@
                     <tbody>
                         <tr><td>{{ __('product.name') }}</td><td>{{ $product->name }}</td></tr>
                         <tr><td>{{ __('product.description') }}</td><td>{{ $product->description }}</td></tr>
+                        <tr><td>{{ __('product.current_stock') }}</td><td>{{ $product->getCurrentStock() }}</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -26,9 +27,15 @@
     <div class="col-md-6">
         <form action="{{ route('products.stocks.store', $product) }}" method="post">
             @csrf
-            <input type="number" name="amount" min="1">
-            <input type="submit" name="add_stock" value="{{ __('product.add_stock') }}">
-            <input type="submit" name="subtract_stock" value="{{ __('product.subtract_stock') }}">
+            <div class="form-group">
+                <label for="amount" class="form-label">{{ __('product.amount') }} <span class="form-required">*</span></label>
+                <input id="amount" type="number" min="1" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" value="{{ old('amount') }}" required>
+                {!! $errors->first('amount', '<span class="invalid-feedback" role="alert">:message</span>') !!}
+            </div>
+            <div class="form-group">
+                <input type="submit" name="add_stock"  class="btn btn-success" value="{{ __('product.add_stock') }}">
+                <input type="submit" name="subtract_stock"  class="btn btn-danger" value="{{ __('product.subtract_stock') }}">
+            </div>
         </form>
     </div>
 </div>
