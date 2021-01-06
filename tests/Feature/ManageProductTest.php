@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Product;
-use Tests\BrowserKitTest as TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\BrowserKitTest as TestCase;
 
 class ManageProductTest extends TestCase
 {
@@ -13,7 +13,7 @@ class ManageProductTest extends TestCase
     /** @test */
     public function user_can_see_product_list_in_product_index_page()
     {
-        $product = factory(Product::class)->create();
+        $product = Product::factory()->create();
 
         $this->loginAsUser();
         $this->visitRoute('products.index');
@@ -90,7 +90,7 @@ class ManageProductTest extends TestCase
     public function user_can_edit_a_product()
     {
         $this->loginAsUser();
-        $product = factory(Product::class)->create(['name' => 'Testing 123']);
+        $product = Product::factory()->create(['name' => 'Testing 123']);
 
         $this->visitRoute('products.show', $product);
         $this->click('edit-product-'.$product->id);
@@ -109,7 +109,7 @@ class ManageProductTest extends TestCase
     public function validate_product_name_update_is_required()
     {
         $this->loginAsUser();
-        $product = factory(Product::class)->create(['name' => 'Testing 123']);
+        $product = Product::factory()->create(['name' => 'Testing 123']);
 
         // name empty
         $this->patch(route('products.update', $product), $this->getEditFields(['name' => '']));
@@ -120,7 +120,7 @@ class ManageProductTest extends TestCase
     public function validate_product_name_update_is_not_more_than_60_characters()
     {
         $this->loginAsUser();
-        $product = factory(Product::class)->create(['name' => 'Testing 123']);
+        $product = Product::factory()->create(['name' => 'Testing 123']);
 
         // name 70 characters
         $this->patch(route('products.update', $product), $this->getEditFields([
@@ -133,7 +133,7 @@ class ManageProductTest extends TestCase
     public function validate_product_description_update_is_not_more_than_255_characters()
     {
         $this->loginAsUser();
-        $product = factory(Product::class)->create(['name' => 'Testing 123']);
+        $product = Product::factory()->create(['name' => 'Testing 123']);
 
         // description 256 characters
         $this->patch(route('products.update', $product), $this->getEditFields([
@@ -146,8 +146,8 @@ class ManageProductTest extends TestCase
     public function user_can_delete_a_product()
     {
         $this->loginAsUser();
-        $product = factory(Product::class)->create();
-        factory(Product::class)->create();
+        $product = Product::factory()->create();
+        Product::factory()->create();
 
         $this->visitRoute('products.edit', $product);
         $this->click('del-product-'.$product->id);

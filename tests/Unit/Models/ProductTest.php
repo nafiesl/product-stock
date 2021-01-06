@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Models;
 
-use App\Models\User;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\BrowserKitTest as TestCase;
 
@@ -14,7 +14,7 @@ class ProductTest extends TestCase
     /** @test */
     public function a_product_has_name_link_attribute()
     {
-        $product = factory(Product::class)->create();
+        $product = Product::factory()->create();
 
         $title = __('app.show_detail_title', [
             'name' => $product->name, 'type' => __('product.product'),
@@ -30,7 +30,7 @@ class ProductTest extends TestCase
     /** @test */
     public function a_product_has_belongs_to_creator_relation()
     {
-        $product = factory(Product::class)->make();
+        $product = Product::factory()->make();
 
         $this->assertInstanceOf(User::class, $product->creator);
         $this->assertEquals($product->creator_id, $product->creator->id);

@@ -21,7 +21,7 @@ class ProductPolicyTest extends TestCase
     public function user_can_view_product()
     {
         $user = $this->createUser();
-        $product = factory(Product::class)->create();
+        $product = Product::factory()->create();
         $this->assertTrue($user->can('view', $product));
     }
 
@@ -29,7 +29,7 @@ class ProductPolicyTest extends TestCase
     public function user_can_update_product()
     {
         $user = $this->createUser();
-        $product = factory(Product::class)->create();
+        $product = Product::factory()->create();
         $this->assertTrue($user->can('update', $product));
     }
 
@@ -37,7 +37,7 @@ class ProductPolicyTest extends TestCase
     public function user_can_delete_product()
     {
         $user = $this->createUser();
-        $product = factory(Product::class)->create();
+        $product = Product::factory()->create();
         $this->assertTrue($user->can('delete', $product));
     }
 }
