@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6eb8d77d9d280dcbbdea46c20c3d92f5",
+    "content-hash": "c780e17bc230d7354d3a444bcfc5a8de",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5348,6 +5348,72 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
+            "name": "laravel/browser-kit-testing",
+            "version": "v6.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/browser-kit-testing.git",
+                "reference": "a8bc92f2bb91db210ed2d8cbf4d6b16fa49453dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/browser-kit-testing/zipball/a8bc92f2bb91db210ed2d8cbf4d6b16fa49453dc",
+                "reference": "a8bc92f2bb91db210ed2d8cbf4d6b16fa49453dc",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-json": "*",
+                "illuminate/contracts": "^7.0|^8.0",
+                "illuminate/database": "^7.0|^8.0",
+                "illuminate/http": "^7.0|^8.0",
+                "illuminate/support": "^7.0|^8.0",
+                "illuminate/testing": "^7.0|^8.0",
+                "mockery/mockery": "^1.0",
+                "php": "^7.2|^8.0",
+                "phpunit/phpunit": "^8.5|^9.0",
+                "symfony/console": "^5.0",
+                "symfony/css-selector": "^5.0",
+                "symfony/dom-crawler": "^5.0",
+                "symfony/http-foundation": "^5.0",
+                "symfony/http-kernel": "^5.0"
+            },
+            "require-dev": {
+                "laravel/framework": "^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\BrowserKitTesting\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Provides backwards compatibility for BrowserKit testing in the latest Laravel release.",
+            "keywords": [
+                "laravel",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/browser-kit-testing/issues",
+                "source": "https://github.com/laravel/browser-kit-testing/tree/v6.2.2"
+            },
+            "time": "2020-11-24T16:37:28+00:00"
+        },
+        {
             "name": "laravel/sail",
             "version": "v1.1.0",
             "source": {
@@ -5405,6 +5471,67 @@
                 "source": "https://github.com/laravel/sail"
             },
             "time": "2021-01-05T16:40:11+00:00"
+        },
+        {
+            "name": "luthfi/simple-crud-generator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nafiesl/SimpleCrudGenerator.git",
+                "reference": "5e582e6df1c1e0cbe9b02fae75ee7ec21f18f250"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/5e582e6df1c1e0cbe9b02fae75ee7ec21f18f250",
+                "reference": "5e582e6df1c1e0cbe9b02fae75ee7ec21f18f250",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.8.*||^6.0||^7.0||^8.0",
+                "laravel/browser-kit-testing": "^5.0||^6.0",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Luthfi\\CrudGenerator\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Luthfi\\CrudGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nafies Luthfi",
+                    "email": "nafiesl@gmail.com"
+                }
+            ],
+            "description": "A simple CRUD generator for Laravel 5.5 (and later) with Bootstrap 4.",
+            "keywords": [
+                "artisan-command",
+                "crud",
+                "crud-generator",
+                "laravel-package",
+                "tdd-workflow",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/nafiesl/SimpleCrudGenerator/issues",
+                "source": "https://github.com/nafiesl/SimpleCrudGenerator/tree/master"
+            },
+            "time": "2020-11-14T14:52:34+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -7346,6 +7473,80 @@
             "time": "2020-09-28T06:39:44+00:00"
         },
         {
+            "name": "symfony/dom-crawler",
+            "version": "v5.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/dom-crawler.git",
+                "reference": "ee7cf316fb0de786cfe5ae32ee79502b290c81ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/ee7cf316fb0de786cfe5ae32ee79502b290c81ea",
+                "reference": "ee7cf316fb0de786cfe5ae32ee79502b290c81ea",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/polyfill-ctype": "~1.8",
+                "symfony/polyfill-mbstring": "~1.0",
+                "symfony/polyfill-php80": "^1.15"
+            },
+            "conflict": {
+                "masterminds/html5": "<2.6"
+            },
+            "require-dev": {
+                "masterminds/html5": "^2.6",
+                "symfony/css-selector": "^4.4|^5.0"
+            },
+            "suggest": {
+                "symfony/css-selector": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\DomCrawler\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony DomCrawler Component",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/dom-crawler/tree/v5.2.1"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-12-18T08:02:46+00:00"
+        },
+        {
             "name": "theseer/tokenizer",
             "version": "1.2.0",
             "source": {
@@ -7398,7 +7599,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "luthfi/simple-crud-generator": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
