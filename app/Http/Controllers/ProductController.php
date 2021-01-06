@@ -14,8 +14,13 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $rawSelect = '`products`.*';
+        $rawSelect .= ', (select sum(`amount`) from `stock_histories`';
+        $rawSelect .= ' where `products`.`id` = `stock_histories`.`product_id`)';
+        $rawSelect .= ' as `current_stock`';
         $productQuery = Product::query();
         $productQuery->where('name', 'like', '%'.request('q').'%');
+        $productQuery->selectRaw($rawSelect);
         $products = $productQuery->paginate(25);
 
         return view('products.index', compact('products'));
