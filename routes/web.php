@@ -25,3 +25,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
  * Products Routes
  */
 Route::resource('products', App\Http\Controllers\ProductController::class);
+Route::post('/products/{product}/stocks', [App\Http\Controllers\Products\StockController::class, 'store'])->name('products.stocks.store');

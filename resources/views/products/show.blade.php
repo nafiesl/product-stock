@@ -23,5 +23,12 @@
             </div>
         </div>
     </div>
+    <div class="col-md-6">
+        <form action="{{ route('products.stocks.store', $product) }}" method="post">
+            @csrf
+            <input type="number" name="amount" min="1">
+            <input type="submit" name="add_stock" value="{{ __('product.add_stock') }}">
+        </form>
+    </div>
 </div>
 @endsection
