@@ -25,6 +25,7 @@ class ManageProductStocksTest extends BrowserKitTest
         ]);
 
         $this->seeRouteIs('products.show', $product);
+        $this->assertEquals($product->getCurrentStock(), 3);
         $this->seeInDatabase('stock_histories', [
             'product_id' => $product->id,
             'amount'     => 3,
@@ -46,6 +47,7 @@ class ManageProductStocksTest extends BrowserKitTest
         ]);
 
         $this->seeRouteIs('products.show', $product);
+        $this->assertEquals($product->getCurrentStock(), -3);
         $this->seeInDatabase('stock_histories', [
             'product_id' => $product->id,
             'amount'     => -3,
