@@ -21,6 +21,14 @@ class StockHistory extends Model
             return;
         }
 
+        if ($this->transaction_type_id == static::TRANSACTION_TYPE_PURCHASE && $this->amount < 0) {
+            return $transactionTypes[$this->transaction_type_id].' Return';
+        }
+
+        if ($this->transaction_type_id == static::TRANSACTION_TYPE_SALES && $this->amount > 0) {
+            return $transactionTypes[$this->transaction_type_id].' Return';
+        }
+
         return $transactionTypes[$this->transaction_type_id];
     }
 }
