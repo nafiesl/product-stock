@@ -3,6 +3,7 @@
 namespace Tests\Feature\Products;
 
 use App\Models\Product;
+use App\Models\StockHistory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\BrowserKitTest;
 
@@ -22,14 +23,16 @@ class ManageProductStocksTest extends BrowserKitTest
         $this->seeElement('input', ['name' => 'add_stock', 'value' => __('product.add_stock')]);
 
         $this->submitForm(__('product.add_stock'), [
-            'amount' => '3',
+            'transaction_type_id' => StockHistory::TRANSACTION_TYPE_SALES,
+            'amount'              => '3',
         ]);
 
         $this->seeRouteIs('products.show', $product);
         $this->assertEquals($product->getCurrentStock(), 3);
         $this->seeInDatabase('stock_histories', [
-            'product_id' => $product->id,
-            'amount'     => 3,
+            'product_id'          => $product->id,
+            'transaction_type_id' => StockHistory::TRANSACTION_TYPE_SALES,
+            'amount'              => 3,
         ]);
     }
 

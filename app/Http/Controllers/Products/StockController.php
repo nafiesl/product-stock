@@ -13,14 +13,16 @@ class StockController extends Controller
     {
         if ($request->has('add_stock')) {
             StockHistory::create([
-                'product_id' => $product->id,
-                'amount'     => $request->get('amount'),
+                'product_id'          => $product->id,
+                'transaction_type_id' => $request->get('transaction_type_id'),
+                'amount'              => $request->get('amount'),
             ]);
         }
         if ($request->has('subtract_stock')) {
             StockHistory::create([
-                'product_id' => $product->id,
-                'amount'     => -$request->get('amount'),
+                'product_id'          => $product->id,
+                'transaction_type_id' => $request->get('transaction_type_id'),
+                'amount'              => -$request->get('amount'),
             ]);
         }
 

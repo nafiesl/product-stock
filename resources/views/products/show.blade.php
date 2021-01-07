@@ -34,6 +34,18 @@
                 {!! $errors->first('amount', '<span class="invalid-feedback" role="alert">:message</span>') !!}
             </div>
             <div class="form-group">
+                <label for="transaction_type_id" class="control-label">{{ __('product_stock.transaction_type') }}</label>
+                <select id="transaction_type_id" name="transaction_type_id" class="form-control{{ $errors->has('transaction_type_id') ? ' is-invalid' : '' }}">
+                    <option value="">-- {{ __('product_stock.transaction_type_select') }} --</option>
+                    @foreach (config('product_stock.transaction_types') as $transactionTypeId => $transactionTypeName)
+                        <option value="{{ $transactionTypeId }}" {{ old('transaction_type_id') == $transactionTypeId ? 'selected' : '' }}>
+                            {{ $transactionTypeName }}
+                        </option>
+                    @endforeach
+                </select>
+                {!! $errors->first('transaction_type_id', '<span class="small text-danger">:message</span>') !!}
+            </div>
+            <div class="form-group">
                 <input type="submit" name="add_stock"  class="btn btn-success" value="{{ __('product.add_stock') }}">
                 <input type="submit" name="subtract_stock"  class="btn btn-danger" value="{{ __('product.subtract_stock') }}">
             </div>
@@ -44,6 +56,7 @@
             <table class="table table-sm table-responsive-sm table-hover">
                 <thead>
                     <tr>
+                        <th class="text-center">{{ __('product_stock.transaction_type') }}</th>
                         <th>{{ __('app.date_time') }}</th>
                         <th class="text-right">{{ __('product.amount') }}</th>
                     </tr>
@@ -51,12 +64,14 @@
                 <tbody>
                     @foreach ($product->stockHistories as $stockHistory)
                         <tr>
+                            <td class="text-center">{{ $stockHistory->transaction_type_id }}</td>
                             <td>{{ $stockHistory->created_at }}</td>
                             <td class="text-right">{{ $stockHistory->amount }}</td>
                         </tr>
                     @endforeach
                     <tr>
-                        <th>{{ __('product.current_stock') }}</th>
+                        <th>&nbsp;</th>
+                        <th class="text-right">{{ __('product.current_stock') }}</th>
                         <th class="text-right">{{ $product->stockHistories->sum('amount') }}</th>
                     </tr>
                 </tbody>

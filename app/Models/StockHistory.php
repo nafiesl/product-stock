@@ -9,5 +9,7 @@ class StockHistory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'amount'];
+    const TRANSACTION_TYPE_SALES = 1;
+
+    protected $fillable = ['product_id', 'transaction_type_id', 'amount'];
 }
