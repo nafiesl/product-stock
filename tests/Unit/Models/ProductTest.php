@@ -42,7 +42,7 @@ class ProductTest extends TestCase
     public function a_product_has_many_stock_histories_relation()
     {
         $product = Product::factory()->create();
-        $stockHistory = StockHistory::create(['product_id' => $product->id, 'amount' => 1]);
+        $stockHistory = StockHistory::factory()->create(['product_id' => $product->id, 'amount' => 1]);
 
         $this->assertInstanceOf(Collection::class, $product->stockHistories);
         $this->assertInstanceOf(StockHistory::class, $product->stockHistories->first());
@@ -52,13 +52,13 @@ class ProductTest extends TestCase
     public function a_product_has_get_current_stock_method()
     {
         $product = Product::factory()->create();
-        StockHistory::create([
+        StockHistory::factory()->create([
             'product_id' => $product->id,
             'amount'     => 4,
         ]);
         $this->assertEquals($product->getCurrentStock(), 4);
 
-        StockHistory::create([
+        StockHistory::factory()->create([
             'product_id' => $product->id,
             'amount'     => -1,
         ]);

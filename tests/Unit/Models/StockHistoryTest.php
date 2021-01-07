@@ -16,6 +16,7 @@ class StockHistoryTest extends TestCase
         $typeSales = StockHistory::TRANSACTION_TYPE_SALES;
         $stockHistory = StockHistory::factory()->make([
             'transaction_type_id' => $typeSales,
+            'amount'              => -5,
         ]);
         $transactionTypes = config('product_stock.transaction_types');
         $this->assertEquals($transactionTypes[$typeSales], $stockHistory->transaction_type);

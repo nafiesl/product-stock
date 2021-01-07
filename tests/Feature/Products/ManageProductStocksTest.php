@@ -48,7 +48,8 @@ class ManageProductStocksTest extends BrowserKitTest
         $this->seeElement('input', ['name' => 'subtract_stock', 'value' => __('product.subtract_stock')]);
 
         $this->submitForm(__('product.subtract_stock'), [
-            'amount' => '3',
+            'transaction_type_id' => StockHistory::TRANSACTION_TYPE_PURCHASE,
+            'amount'              => '3',
         ]);
 
         $this->seeRouteIs('products.show', $product);
