@@ -10,6 +10,7 @@ class StockHistory extends Model
     use HasFactory;
 
     const TRANSACTION_TYPE_SALES = 1;
+    const TRANSACTION_TYPE_PURCHASE = 2;
 
     protected $fillable = ['product_id', 'transaction_type_id', 'amount'];
 
