@@ -12,4 +12,14 @@ class StockHistory extends Model
     const TRANSACTION_TYPE_SALES = 1;
 
     protected $fillable = ['product_id', 'transaction_type_id', 'amount'];
+
+    public function getTransactionTypeAttribute()
+    {
+        $transactionTypes = config('product_stock.transaction_types');
+        if (!isset($transactionTypes[$this->transaction_type_id])) {
+            return;
+        }
+
+        return $transactionTypes[$this->transaction_type_id];
+    }
 }

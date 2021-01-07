@@ -64,7 +64,7 @@
                 <tbody>
                     @foreach ($product->stockHistories as $stockHistory)
                         <tr>
-                            <td class="text-center">{{ $stockHistory->transaction_type_id }}</td>
+                            <td class="text-center">{{ $stockHistory->transaction_type }}</td>
                             <td>{{ $stockHistory->created_at }}</td>
                             <td class="text-right">{{ $stockHistory->amount }}</td>
                         </tr>
