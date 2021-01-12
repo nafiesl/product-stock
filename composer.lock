@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d746ef05a481a7c6b5dfa2319cd7a23",
+    "content-hash": "7e54750b953527431f37246b6d4e3966",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5611,27 +5611,26 @@
         },
         {
             "name": "luthfi/simple-crud-generator",
-            "version": "dev-master",
+            "version": "dev-laravel_8_crud_generator",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nafiesl/SimpleCrudGenerator.git",
-                "reference": "5e582e6df1c1e0cbe9b02fae75ee7ec21f18f250"
+                "reference": "f4521c3c4fdf6450d8354789fad82ef85bc47ccb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/5e582e6df1c1e0cbe9b02fae75ee7ec21f18f250",
-                "reference": "5e582e6df1c1e0cbe9b02fae75ee7ec21f18f250",
+                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/f4521c3c4fdf6450d8354789fad82ef85bc47ccb",
+                "reference": "f4521c3c4fdf6450d8354789fad82ef85bc47ccb",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "5.8.*||^6.0||^7.0||^8.0",
-                "laravel/browser-kit-testing": "^5.0||^6.0",
-                "php": ">=7.0.0"
+                "illuminate/support": "^8.0",
+                "laravel/browser-kit-testing": "^6.0",
+                "php": "^7.3|^8.0"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.0"
+                "orchestra/testbench": "^6.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -5666,9 +5665,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nafiesl/SimpleCrudGenerator/issues",
-                "source": "https://github.com/nafiesl/SimpleCrudGenerator/tree/master"
+                "source": "https://github.com/nafiesl/SimpleCrudGenerator/tree/laravel_8_crud_generator"
             },
-            "time": "2020-11-14T14:52:34+00:00"
+            "time": "2021-01-12T04:42:07+00:00"
         },
         {
             "name": "maximebf/debugbar",
