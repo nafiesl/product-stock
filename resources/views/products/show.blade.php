@@ -45,6 +45,7 @@
                 </select>
                 {!! $errors->first('transaction_type_id', '<span class="small text-danger">:message</span>') !!}
             </div>
+            {!! FormField::select('partner_id', $partners) !!}
             <div class="form-group">
                 <input type="submit" name="add_stock"  class="btn btn-success" value="{{ __('product.add_stock') }}">
                 <input type="submit" name="subtract_stock"  class="btn btn-danger" value="{{ __('product.subtract_stock') }}">

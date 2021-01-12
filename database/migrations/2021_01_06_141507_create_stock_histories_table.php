@@ -16,6 +16,7 @@ class CreateStockHistoriesTable extends Migration
         Schema::create('stock_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrain();
+            $table->foreignId('partner_id')->constrain()->nullable();
             $table->unsignedTinyInteger('transaction_type_id');
             $table->integer('amount');
             $table->timestamps();

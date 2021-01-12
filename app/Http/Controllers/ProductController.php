@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Partner;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -67,7 +68,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show', compact('product'));
+        $partners = Partner::orderBy('name')->pluck('name', 'id');
+
+        return view('products.show', compact('product', 'partners'));
     }
 
     /**
