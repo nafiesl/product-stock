@@ -28,27 +28,12 @@
         @can('update', $product)
         <form action="{{ route('products.stocks.store', $product) }}" method="post">
             @csrf
-            <div class="form-group">
-                <label for="amount" class="form-label">{{ __('product.amount') }} <span class="form-required">*</span></label>
-                <input id="amount" type="number" min="1" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" value="{{ old('amount') }}" required>
-                {!! $errors->first('amount', '<span class="invalid-feedback" role="alert">:message</span>') !!}
-            </div>
-            <div class="form-group">
-                <label for="transaction_type_id" class="control-label">{{ __('product_stock.transaction_type') }}</label>
-                <select id="transaction_type_id" name="transaction_type_id" class="form-control{{ $errors->has('transaction_type_id') ? ' is-invalid' : '' }}">
-                    <option value="">-- {{ __('product_stock.transaction_type_select') }} --</option>
-                    @foreach (config('product_stock.transaction_types') as $transactionTypeId => $transactionTypeName)
-                        <option value="{{ $transactionTypeId }}" {{ old('transaction_type_id') == $transactionTypeId ? 'selected' : '' }}>
-                            {{ $transactionTypeName }}
-                        </option>
-                    @endforeach
-                </select>
-                {!! $errors->first('transaction_type_id', '<span class="small text-danger">:message</span>') !!}
-            </div>
+            {!! FormField::text('amount', ['type' => 'number', 'min' => '0']) !!}
+            {!! FormField::radios('transaction_type_id', config('product_stock.transaction_types')) !!}
             {!! FormField::select('partner_id', $partners) !!}
             <div class="form-group">
-                <input type="submit" name="add_stock"  class="btn btn-success" value="{{ __('product.add_stock') }}">
-                <input type="submit" name="subtract_stock"  class="btn btn-danger" value="{{ __('product.subtract_stock') }}">
+                {!! Form::submit(__('product.add_stock'), ['class' => 'btn btn-success', 'name' => 'add_stock']) !!}
+                {!! Form::submit(__('product.subtract_stock'), ['class' => 'btn btn-danger', 'name' => 'subtract_stock']) !!}
             </div>
         </form>
         @endcan
