@@ -35,6 +35,7 @@
             {{ Form::model($partner, ['route' => ['partners.update', $partner], 'method' => 'patch']) }}
             <div class="card-body">
                 {!! FormField::text('name', ['required' => true, 'label' => __('partner.name')]) !!}
+                {!! FormField::radios('type_id', config('product_stock.partner_types'), ['required' => true, 'label' => __('partner.type')]) !!}
                 {!! FormField::textarea('description', ['label' => __('partner.description')]) !!}
             </div>
             <div class="card-footer">

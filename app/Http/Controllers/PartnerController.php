@@ -43,8 +43,10 @@ class PartnerController extends Controller
     {
         $this->authorize('create', new Partner);
 
+        $partnerTypesString = implode(',', array_keys(config('product_stock.partner_types')));
         $newPartner = $request->validate([
             'name'        => 'required|max:60',
+            'type_id'     => 'required|in:'.$partnerTypesString,
             'description' => 'nullable|max:255',
         ]);
         $newPartner['creator_id'] = auth()->id();
@@ -89,8 +91,10 @@ class PartnerController extends Controller
     {
         $this->authorize('update', $partner);
 
+        $partnerTypesString = implode(',', array_keys(config('product_stock.partner_types')));
         $partnerData = $request->validate([
             'name'        => 'required|max:60',
+            'type_id'     => 'required|in:'.$partnerTypesString,
             'description' => 'nullable|max:255',
         ]);
         $partner->update($partnerData);

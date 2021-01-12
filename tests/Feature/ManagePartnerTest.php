@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Partner;
-use Tests\BrowserKitTest as TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\BrowserKitTest as TestCase;
 
 class ManagePartnerTest extends TestCase
 {
@@ -24,6 +24,7 @@ class ManagePartnerTest extends TestCase
     {
         return array_merge([
             'name'        => 'Partner 1 name',
+            'type_id'     => Partner::TYPE_VENDOR,
             'description' => 'Partner 1 description',
         ], $overrides);
     }
@@ -82,6 +83,7 @@ class ManagePartnerTest extends TestCase
     {
         return array_merge([
             'name'        => 'Partner 1 name',
+            'type_id'     => Partner::TYPE_CUSTOMER,
             'description' => 'Partner 1 description',
         ], $overrides);
     }

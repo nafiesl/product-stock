@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreatePartnersTable extends Migration
 {
@@ -17,6 +17,7 @@ class CreatePartnersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 60);
             $table->string('description')->nullable();
+            $table->unsignedTinyInteger('type_id');
             $table->unsignedBigInteger('creator_id');
             $table->timestamps();
 

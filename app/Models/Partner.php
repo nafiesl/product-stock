@@ -10,7 +10,10 @@ class Partner extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'creator_id'];
+    const TYPE_CUSTOMER = 1;
+    const TYPE_VENDOR = 2;
+
+    protected $fillable = ['name', 'type_id', 'description', 'creator_id'];
 
     public function getNameLinkAttribute()
     {
