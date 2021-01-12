@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class Partner extends Model
 {
@@ -28,5 +29,10 @@ class Partner extends Model
     public function creator()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getTypeAttribute()
+    {
+        return Arr::get(config('product_stock.partner_types'), $this->type_id);
     }
 }

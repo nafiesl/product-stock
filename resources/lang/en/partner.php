@@ -2,17 +2,18 @@
 
 return [
     // Labels
-    'partner'     => 'Partner',
-    'list'           => 'Partner List',
-    'search'         => 'Search Partner',
-    'search_text'    => 'Name ...',
-    'all'            => 'All Partner',
-    'select'         => 'Select Partner',
-    'detail'         => 'Partner Detail',
-    'not_found'      => 'Partner not found.',
-    'empty'          => 'Partner is empty.',
-    'back_to_show'   => 'Back to Partner Detail',
-    'back_to_index'  => 'Back to Partner List',
+    'partner'       => 'Partner',
+    'list'          => 'Partner List',
+    'search'        => 'Search Partner',
+    'search_text'   => 'Name ...',
+    'all'           => 'All Partner',
+    'select'        => 'Select Partner',
+    'detail'        => 'Partner Detail',
+    'not_found'     => 'Partner not found.',
+    'empty'         => 'Partner is empty.',
+    'type'          => 'Type',
+    'back_to_show'  => 'Back to Partner Detail',
+    'back_to_index' => 'Back to Partner List',
 
     // Actions
     'create'         => 'Create new Partner',
@@ -28,6 +29,6 @@ return [
     'undeleteable'   => 'Partner data cannot be deleted.',
 
     // Attributes
-    'name'           => 'Partner Name',
-    'description'    => 'Partner Description',
+    'name'        => 'Partner Name',
+    'description' => 'Partner Description',
 ];
