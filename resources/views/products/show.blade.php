@@ -28,8 +28,14 @@
         @can('update', $product)
         <form action="{{ route('products.stocks.store', $product) }}" method="post">
             @csrf
-            {!! FormField::text('amount', ['type' => 'number', 'min' => '0']) !!}
-            {!! FormField::radios('transaction_type_id', config('product_stock.transaction_types')) !!}
+            <div class="row">
+                <div class="col-md-6">
+                    {!! FormField::text('amount', ['type' => 'number', 'min' => '0']) !!}
+                </div>
+                <div class="col-md-6">
+                    {!! FormField::radios('transaction_type_id', config('product_stock.transaction_types')) !!}
+                </div>
+            </div>
             {!! FormField::select('partner_id', $partners) !!}
             <div class="form-group">
                 {!! Form::submit(__('product.add_stock'), ['class' => 'btn btn-success', 'name' => 'add_stock']) !!}
@@ -43,6 +49,7 @@
                 <thead>
                     <tr>
                         <th class="text-center">{{ __('product_stock.transaction_type') }}</th>
+                        <th>{{ __('partner.partner') }}</th>
                         <th>{{ __('app.date_time') }}</th>
                         <th class="text-right">{{ __('product.amount') }}</th>
                     </tr>
@@ -51,12 +58,13 @@
                     @foreach ($product->stockHistories as $stockHistory)
                         <tr>
                             <td class="text-center">{{ $stockHistory->transaction_type }}</td>
+                            <td>{{ $stockHistory->partner->name }}</td>
                             <td>{{ $stockHistory->created_at }}</td>
                             <td class="text-right">{{ $stockHistory->amount }}</td>
                         </tr>
                     @endforeach
                     <tr>
-                        <th>&nbsp;</th>
+                        <th colspan="2">&nbsp;</th>
                         <th class="text-right">{{ __('product.current_stock') }}</th>
                         <th class="text-right">{{ $product->stockHistories->sum('amount') }}</th>
                     </tr>

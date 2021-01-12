@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Models;
 
+use App\Models\Partner;
 use App\Models\StockHistory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\BrowserKitTest as TestCase;
@@ -41,5 +42,14 @@ class StockHistoryTest extends TestCase
         $this->assertEquals($transactionTypes[$typeSales].' Return', $stockHistory->transaction_type);
         $stockHistory->amount = -3;
         $this->assertEquals($transactionTypes[$typeSales], $stockHistory->transaction_type);
+    }
+
+    /** @test */
+    public function a_stock_history_has_belongs_to_partner_relation()
+    {
+        $stockHistory = StockHistory::factory()->make();
+
+        $this->assertInstanceOf(Partner::class, $stockHistory->partner);
+        $this->assertEquals($stockHistory->partner_id, $stockHistory->partner->id);
     }
 }

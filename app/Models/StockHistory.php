@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Partner;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,5 +31,10 @@ class StockHistory extends Model
         }
 
         return $transactionTypes[$this->transaction_type_id];
+    }
+
+    public function partner()
+    {
+        return $this->belongsTo(Partner::class)->withDefault(['name' => 'n/a']);
     }
 }
