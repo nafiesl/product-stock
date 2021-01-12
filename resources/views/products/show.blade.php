@@ -24,53 +24,53 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        @can('update', $product)
-        <form action="{{ route('products.stocks.store', $product) }}" method="post">
+    <div class="col-md-6"></div>
+</div>
+<hr>
+<div class="card">
+    <div class="card-header">
+        {{ __('product.stock_histories') }} <br>
+    </div>
+    @can('update', $product)
+    <div class="card-body">
+        <form action="{{ route('products.stocks.store', $product) }}" method="post" class="form-inline">
             @csrf
-            <div class="row">
-                <div class="col-md-6">
-                    {!! FormField::text('amount', ['type' => 'number', 'min' => '0']) !!}
-                </div>
-                <div class="col-md-6">
-                    {!! FormField::radios('transaction_type_id', config('product_stock.transaction_types')) !!}
-                </div>
-            </div>
-            {!! FormField::select('partner_id', $partners) !!}
+            {!! FormField::text('amount', ['type' => 'number', 'min' => '0', 'class' => 'mr-2']) !!}
+            {!! FormField::select('transaction_type_id', config('product_stock.transaction_types'), ['label' => false, 'class' => 'mr-2']) !!}
+            {!! FormField::select('partner_id', $partners, ['label' => false, 'class' => 'mr-2']) !!}
             <div class="form-group">
-                {!! Form::submit(__('product.add_stock'), ['class' => 'btn btn-success', 'name' => 'add_stock']) !!}
+                {!! Form::submit(__('product.add_stock'), ['class' => 'btn btn-success mr-2', 'name' => 'add_stock']) !!}
                 {!! Form::submit(__('product.subtract_stock'), ['class' => 'btn btn-danger', 'name' => 'subtract_stock']) !!}
             </div>
         </form>
-        @endcan
-        <div class="card">
-            <div class="card-header">{{ __('product.stock_histories') }}</div>
-            <table class="table table-sm table-responsive-sm table-hover">
-                <thead>
+    </div>
+    @endcan
+    <div class="card-body">
+        <table class="table table-sm table-responsive-sm table-hover">
+            <thead>
+                <tr>
+                    <th>{{ __('partner.partner') }}</th>
+                    <th class="text-center">{{ __('product_stock.transaction_type') }}</th>
+                    <th>{{ __('app.date_time') }}</th>
+                    <th class="text-right">{{ __('product.amount') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($product->stockHistories as $stockHistory)
                     <tr>
-                        <th class="text-center">{{ __('product_stock.transaction_type') }}</th>
-                        <th>{{ __('partner.partner') }}</th>
-                        <th>{{ __('app.date_time') }}</th>
-                        <th class="text-right">{{ __('product.amount') }}</th>
+                        <td>{{ $stockHistory->partner->name }}</td>
+                        <td class="text-center">{{ $stockHistory->transaction_type }}</td>
+                        <td>{{ $stockHistory->created_at }}</td>
+                        <td class="text-right">{{ $stockHistory->amount }}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach ($product->stockHistories as $stockHistory)
-                        <tr>
-                            <td class="text-center">{{ $stockHistory->transaction_type }}</td>
-                            <td>{{ $stockHistory->partner->name }}</td>
-                            <td>{{ $stockHistory->created_at }}</td>
-                            <td class="text-right">{{ $stockHistory->amount }}</td>
-                        </tr>
-                    @endforeach
-                    <tr>
-                        <th colspan="2">&nbsp;</th>
-                        <th class="text-right">{{ __('product.current_stock') }}</th>
-                        <th class="text-right">{{ $product->stockHistories->sum('amount') }}</th>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                @endforeach
+                <tr>
+                    <th colspan="2">&nbsp;</th>
+                    <th class="text-right">{{ __('product.current_stock') }}</th>
+                    <th class="text-right">{{ $product->stockHistories->sum('amount') }}</th>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 @endsection
