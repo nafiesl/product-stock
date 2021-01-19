@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd98c1eaeb58f2778d6b2fc477c4f94c",
+    "content-hash": "013a9aa732ae0b3c32b3dd030e2a8f7f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5739,16 +5739,16 @@
         },
         {
             "name": "luthfi/simple-crud-generator",
-            "version": "dev-laravel_8_crud_generator",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nafiesl/SimpleCrudGenerator.git",
-                "reference": "f4521c3c4fdf6450d8354789fad82ef85bc47ccb"
+                "reference": "6a62523697f54e29729d3c75af8a729cca6e361b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/f4521c3c4fdf6450d8354789fad82ef85bc47ccb",
-                "reference": "f4521c3c4fdf6450d8354789fad82ef85bc47ccb",
+                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/6a62523697f54e29729d3c75af8a729cca6e361b",
+                "reference": "6a62523697f54e29729d3c75af8a729cca6e361b",
                 "shasum": ""
             },
             "require": {
@@ -5793,9 +5793,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nafiesl/SimpleCrudGenerator/issues",
-                "source": "https://github.com/nafiesl/SimpleCrudGenerator/tree/laravel_8_crud_generator"
+                "source": "https://github.com/nafiesl/SimpleCrudGenerator/tree/2.0.0"
             },
-            "time": "2021-01-12T04:42:07+00:00"
+            "time": "2021-01-13T12:34:26+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -7997,9 +7997,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "luthfi/simple-crud-generator": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
