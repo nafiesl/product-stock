@@ -3,6 +3,7 @@
 namespace Tests\Unit\Models;
 
 use App\Models\Product;
+use App\Models\ProductUnit;
 use App\Models\StockHistory;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
@@ -63,5 +64,15 @@ class ProductTest extends TestCase
             'amount'     => -1,
         ]);
         $this->assertEquals($product->getCurrentStock(), 3);
+    }
+
+    /** @test */
+    public function a_product_has_belongs_to_product_unit_relation()
+    {
+        $productUnit = ProductUnit::factory()->create();
+        $product = Product::factory()->create(['product_unit_id' => $productUnit->id]);
+
+        $this->assertInstanceOf(ProductUnit::class, $product->unit);
+        $this->assertEquals($product->product_unit_id, $product->unit->id);
     }
 }

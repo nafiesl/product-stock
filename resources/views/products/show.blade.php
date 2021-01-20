@@ -12,7 +12,7 @@
                     <tbody>
                         <tr><td>{{ __('product.name') }}</td><td>{{ $product->name }}</td></tr>
                         <tr><td>{{ __('product.description') }}</td><td>{{ $product->description }}</td></tr>
-                        <tr><td>{{ __('product.current_stock') }}</td><td>{{ $product->getCurrentStock() }}</td></tr>
+                        <tr><td>{{ __('product.current_stock') }}</td><td>{{ $product->getCurrentStock() }} {{ $product->unit->title }}</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -52,7 +52,7 @@
                     <th>{{ __('partner.partner') }}</th>
                     <th class="text-center">{{ __('product_stock.transaction_type') }}</th>
                     <th>{{ __('app.date_time') }}</th>
-                    <th class="text-right">{{ __('product.amount') }}</th>
+                    <th class="text-right">{{ __('product.amount') }} ({{ $product->unit->title }})</th>
                 </tr>
             </thead>
             <tbody>

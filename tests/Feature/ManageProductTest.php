@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Product;
+use App\Models\ProductUnit;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\BrowserKitTest as TestCase;
 
@@ -31,17 +32,18 @@ class ManageProductTest extends TestCase
     /** @test */
     public function user_can_create_a_product()
     {
+        $productUnit = ProductUnit::factory()->create();
         $this->loginAsUser();
         $this->visitRoute('products.index');
 
         $this->click(__('product.create'));
         $this->seeRouteIs('products.create');
 
-        $this->submitForm(__('product.create'), $this->getCreateFields());
+        $this->submitForm(__('product.create'), $this->getCreateFields(['product_unit_id' => $productUnit->id]));
 
         $this->seeRouteIs('products.show', Product::first());
 
-        $this->seeInDatabase('products', $this->getCreateFields());
+        $this->seeInDatabase('products', $this->getCreateFields(['product_unit_id' => $productUnit->id]));
     }
 
     /** @test */
@@ -90,18 +92,20 @@ class ManageProductTest extends TestCase
     public function user_can_edit_a_product()
     {
         $this->loginAsUser();
+        $productUnit = ProductUnit::factory()->create();
         $product = Product::factory()->create(['name' => 'Testing 123']);
 
         $this->visitRoute('products.show', $product);
         $this->click('edit-product-'.$product->id);
         $this->seeRouteIs('products.edit', $product);
 
-        $this->submitForm(__('product.update'), $this->getEditFields());
+        $this->submitForm(__('product.update'), $this->getEditFields(['product_unit_id' => $productUnit->id]));
 
         $this->seeRouteIs('products.show', $product);
 
         $this->seeInDatabase('products', $this->getEditFields([
-            'id' => $product->id,
+            'id'              => $product->id,
+            'product_unit_id' => $productUnit->id,
         ]));
     }
 

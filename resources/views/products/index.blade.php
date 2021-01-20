@@ -41,7 +41,7 @@
                         <td class="text-center">{{ $products->firstItem() + $key }}</td>
                         <td>{!! $product->name_link !!}</td>
                         <td>{{ $product->description }}</td>
-                        <td class="text-right">{{ $product->current_stock }}</td>
+                        <td class="text-right">{{ $product->current_stock }} {{ $product->unit->title }}</td>
                         <td class="text-center">
                             @can('view', $product)
                                 <a href="{{ route('products.show', $product) }}" id="show-product-{{ $product->id }}">{{ __('app.show') }}</a>

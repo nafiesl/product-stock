@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ProductUnit;
 use App\Models\StockHistory;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +12,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'creator_id'];
+    protected $fillable = ['name', 'description', 'product_unit_id', 'creator_id'];
 
     public function getNameLinkAttribute()
     {
@@ -41,5 +42,10 @@ class Product extends Model
         $stockHistoryQuery = $this->stockHistories();
 
         return $stockHistoryQuery->sum('amount');
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(ProductUnit::class, 'product_unit_id')->withDefault(['title' => 'n/a']);
     }
 }

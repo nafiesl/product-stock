@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Partner;
 use App\Models\Product;
+use App\Models\ProductUnit;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -22,7 +23,7 @@ class ProductController extends Controller
         $productQuery = Product::query();
         $productQuery->where('name', 'like', '%'.request('q').'%');
         $productQuery->selectRaw($rawSelect);
-        $products = $productQuery->paginate(25);
+        $products = $productQuery->with('unit')->paginate(25);
 
         return view('products.index', compact('products'));
     }
@@ -35,8 +36,9 @@ class ProductController extends Controller
     public function create()
     {
         $this->authorize('create', new Product);
+        $productUnits = ProductUnit::pluck('title', 'id');
 
-        return view('products.create');
+        return view('products.create', compact('productUnits'));
     }
 
     /**
@@ -50,8 +52,9 @@ class ProductController extends Controller
         $this->authorize('create', new Product);
 
         $newProduct = $request->validate([
-            'name'        => 'required|max:60',
-            'description' => 'nullable|max:255',
+            'name'            => 'required|max:60',
+            'description'     => 'nullable|max:255',
+            'product_unit_id' => 'nullable|exists:product_units,id',
         ]);
         $newProduct['creator_id'] = auth()->id();
 
@@ -82,8 +85,9 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $this->authorize('update', $product);
+        $productUnits = ProductUnit::pluck('title', 'id');
 
-        return view('products.edit', compact('product'));
+        return view('products.edit', compact('product', 'productUnits'));
     }
 
     /**
@@ -98,8 +102,9 @@ class ProductController extends Controller
         $this->authorize('update', $product);
 
         $productData = $request->validate([
-            'name'        => 'required|max:60',
-            'description' => 'nullable|max:255',
+            'name'            => 'required|max:60',
+            'description'     => 'nullable|max:255',
+            'product_unit_id' => 'nullable|exists:product_units,id',
         ]);
         $product->update($productData);
 

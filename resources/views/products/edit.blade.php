@@ -39,6 +39,7 @@
                         <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name', $product->name) }}" required>
                         {!! $errors->first('name', '<span class="invalid-feedback" role="alert">:message</span>') !!}
                     </div>
+                    {!! FormField::select('product_unit_id', $productUnits, ['value' => old('product_unit_id', $product->product_unit_id)]) !!}
                     <div class="form-group">
                         <label for="description" class="form-label">{{ __('product.description') }}</label>
                         <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" rows="4">{{ old('description', $product->description) }}</textarea>
