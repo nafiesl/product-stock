@@ -31,3 +31,8 @@ Route::post('/products/{product}/stocks', [App\Http\Controllers\Products\StockCo
  * Partners Routes
  */
 Route::resource('partners', App\Http\Controllers\PartnerController::class);
+
+/*
+ * ProductUnits Routes
+ */
+Route::resource('product_units', App\Http\Controllers\ProductUnitController::class);
