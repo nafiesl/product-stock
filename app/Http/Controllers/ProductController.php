@@ -72,8 +72,9 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $partners = Partner::orderBy('name')->pluck('name', 'id');
+        $stockHistories = $product->stockHistories()->oldest('created_at')->get();
 
-        return view('products.show', compact('product', 'partners'));
+        return view('products.show', compact('product', 'partners', 'stockHistories'));
     }
 
     /**

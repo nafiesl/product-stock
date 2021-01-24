@@ -56,7 +56,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($product->stockHistories as $stockHistory)
+                @foreach ($stockHistories as $stockHistory)
                     <tr>
                         <td>{{ $stockHistory->partner->name }}</td>
                         <td class="text-center">{{ $stockHistory->transaction_type }}</td>
