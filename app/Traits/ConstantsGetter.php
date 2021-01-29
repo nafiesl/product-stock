@@ -6,7 +6,6 @@ use ReflectionClass;
 
 trait ConstantsGetter
 {
-
     public static function getConstants($group = null)
     {
         $instance = new ReflectionClass(__CLASS__);
