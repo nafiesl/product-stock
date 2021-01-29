@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Models\Partner;
+use App\Traits\ConstantsGetter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class StockHistory extends Model
 {
-    use HasFactory;
+    use HasFactory, ConstantsGetter;
 
     const TRANSACTION_TYPE_SALES = 1;
     const TRANSACTION_TYPE_PURCHASE = 2;

@@ -11,6 +11,14 @@ class StockController extends Controller
 {
     public function store(Product $product, Request $request)
     {
+        $transactionTypeString = implode(',', StockHistory::getConstants('TRANSACTION_TYPE'));
+        $request->validate([
+            'partner_id'          => 'nullable|exists:partners,id',
+            'transaction_type_id' => 'required|in:'.$transactionTypeString,
+            'amount'              => 'required|numeric',
+            'date'                => 'required|date_format:Y-m-d',
+            'time'                => 'required|date_format:H:i',
+        ]);
         $dateTime = now();
         if ($request->get('date') && $request->get('time')) {
             $dateTime = $request->get('date').' '.$request->get('time').':00';
