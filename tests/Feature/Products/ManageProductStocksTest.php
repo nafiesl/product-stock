@@ -26,6 +26,8 @@ class ManageProductStocksTest extends BrowserKitTest
         $this->submitForm(__('product.add_stock'), [
             'transaction_type_id' => StockHistory::TRANSACTION_TYPE_SALES,
             'amount'              => '3',
+            'date'                => '2020-01-01',
+            'time'                => '21:00',
         ]);
 
         $this->seeRouteIs('products.show', $product);
@@ -35,6 +37,7 @@ class ManageProductStocksTest extends BrowserKitTest
             'transaction_type_id' => StockHistory::TRANSACTION_TYPE_SALES,
             'amount'              => 3,
             'partner_id'          => null,
+            'created_at'          => '2020-01-01 21:00:00',
         ]);
     }
 
@@ -52,6 +55,8 @@ class ManageProductStocksTest extends BrowserKitTest
         $this->submitForm(__('product.subtract_stock'), [
             'transaction_type_id' => StockHistory::TRANSACTION_TYPE_PURCHASE,
             'amount'              => '3',
+            'date'                => now()->format('Y-m-d'),
+            'time'                => now()->format('H:i'),
         ]);
 
         $this->seeRouteIs('products.show', $product);
@@ -79,6 +84,8 @@ class ManageProductStocksTest extends BrowserKitTest
             'transaction_type_id' => StockHistory::TRANSACTION_TYPE_SALES,
             'partner_id'          => $partner->id,
             'amount'              => '3',
+            'date'                => now()->format('Y-m-d'),
+            'time'                => now()->format('H:i'),
         ]);
 
         $this->seeRouteIs('products.show', $product);
