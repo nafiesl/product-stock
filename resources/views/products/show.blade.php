@@ -38,8 +38,8 @@
             {!! FormField::text('amount', ['type' => 'number', 'min' => '0', 'class' => 'mr-2']) !!}
             {!! FormField::select('transaction_type_id', config('product_stock.transaction_types'), ['label' => false, 'class' => 'mr-2']) !!}
             {!! FormField::select('partner_id', $partners, ['label' => false, 'class' => 'mr-2']) !!}
-            {!! FormField::text('date', ['type' => 'date', 'class' => 'mr-2']) !!}
-            {!! FormField::text('time', ['type' => 'time', 'class' => 'mr-2']) !!}
+            {!! FormField::text('date', ['type' => 'date', 'value' => old('date', now()->format('Y-m-d')), 'class' => 'mr-2']) !!}
+            {!! FormField::text('time', ['type' => 'time', 'value' => old('time', now()->format('H:i')), 'class' => 'mr-2']) !!}
             <div class="form-group">
                 {!! Form::submit(__('product.add_stock'), ['class' => 'btn btn-success mr-2', 'name' => 'add_stock']) !!}
                 {!! Form::submit(__('product.subtract_stock'), ['class' => 'btn btn-danger', 'name' => 'subtract_stock']) !!}
