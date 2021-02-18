@@ -40,6 +40,7 @@
             {!! FormField::select('partner_id', $partners, ['label' => false, 'class' => 'mr-2']) !!}
             {!! FormField::text('date', ['type' => 'date', 'value' => old('date', now()->format('Y-m-d')), 'class' => 'mr-2']) !!}
             {!! FormField::text('time', ['type' => 'time', 'value' => old('time', now()->format('H:i')), 'class' => 'mr-2']) !!}
+            {!! FormField::textarea('description') !!}
             <div class="form-group">
                 {!! Form::submit(__('product.add_stock'), ['class' => 'btn btn-success mr-2', 'name' => 'add_stock']) !!}
                 {!! Form::submit(__('product.subtract_stock'), ['class' => 'btn btn-danger', 'name' => 'subtract_stock']) !!}
@@ -54,6 +55,7 @@
                     <th>{{ __('partner.partner') }}</th>
                     <th class="text-center">{{ __('product_stock.transaction_type') }}</th>
                     <th>{{ __('app.date_time') }}</th>
+                    <th>{{ __('product_stock.description') }}</th>
                     <th class="text-right">{{ __('product.amount') }} ({{ $product->unit->title }})</th>
                 </tr>
             </thead>
@@ -63,11 +65,12 @@
                         <td>{{ $stockHistory->partner->name }}</td>
                         <td class="text-center">{{ $stockHistory->transaction_type }}</td>
                         <td>{{ $stockHistory->created_at }}</td>
+                        <td>{{ $stockHistory->description }}</td>
                         <td class="text-right">{{ $stockHistory->amount }}</td>
                     </tr>
                 @endforeach
                 <tr>
-                    <th colspan="2">&nbsp;</th>
+                    <th colspan="3">&nbsp;</th>
                     <th class="text-right">{{ __('product.current_stock') }}</th>
                     <th class="text-right">{{ $product->stockHistories->sum('amount') }}</th>
                 </tr>

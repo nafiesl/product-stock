@@ -97,4 +97,36 @@ class ManageProductStocksTest extends BrowserKitTest
             'partner_id'          => $partner->id,
         ]);
     }
+
+    /** @test */
+    public function user_can_add_stocks_of_a_product_with_description()
+    {
+        $this->loginAsUser();
+        $product = Product::factory()->create();
+        $partner = Partner::factory()->create();
+
+        $this->visitRoute('products.show', $product);
+        $this->seeText($product->name);
+        $this->seeElement('input', ['name' => 'amount']);
+        $this->seeElement('input', ['name' => 'add_stock', 'value' => __('product.add_stock')]);
+
+        $this->submitForm(__('product.add_stock'), [
+            'transaction_type_id' => StockHistory::TRANSACTION_TYPE_SALES,
+            'partner_id'          => $partner->id,
+            'amount'              => '3',
+            'date'                => now()->format('Y-m-d'),
+            'time'                => now()->format('H:i'),
+            'description'         => 'Testing description',
+        ]);
+
+        $this->seeRouteIs('products.show', $product);
+        $this->assertEquals($product->getCurrentStock(), 3);
+        $this->seeInDatabase('stock_histories', [
+            'product_id'          => $product->id,
+            'transaction_type_id' => StockHistory::TRANSACTION_TYPE_SALES,
+            'amount'              => 3,
+            'partner_id'          => $partner->id,
+            'description'         => 'Testing description',
+        ]);
+    }
 }

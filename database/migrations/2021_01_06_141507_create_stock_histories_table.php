@@ -19,6 +19,7 @@ class CreateStockHistoriesTable extends Migration
             $table->foreignId('partner_id')->constrain()->nullable();
             $table->unsignedTinyInteger('transaction_type_id');
             $table->integer('amount');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

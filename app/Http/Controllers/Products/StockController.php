@@ -18,6 +18,7 @@ class StockController extends Controller
             'amount'              => 'required|numeric',
             'date'                => 'required|date_format:Y-m-d',
             'time'                => 'required|date_format:H:i',
+            'description'         => 'nullable|max:255',
         ]);
         $dateTime = now();
         if ($request->get('date') && $request->get('time')) {
@@ -29,6 +30,7 @@ class StockController extends Controller
                 'partner_id'          => $request->get('partner_id'),
                 'transaction_type_id' => $request->get('transaction_type_id'),
                 'amount'              => $request->get('amount'),
+                'description'         => $request->get('description'),
                 'created_at'          => $dateTime,
             ]);
         }
@@ -38,6 +40,7 @@ class StockController extends Controller
                 'partner_id'          => $request->get('partner_id'),
                 'transaction_type_id' => $request->get('transaction_type_id'),
                 'amount'              => -$request->get('amount'),
+                'description'         => $request->get('description'),
                 'created_at'          => $dateTime,
             ]);
         }

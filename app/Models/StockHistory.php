@@ -14,7 +14,10 @@ class StockHistory extends Model
     const TRANSACTION_TYPE_SALES = 1;
     const TRANSACTION_TYPE_PURCHASE = 2;
 
-    protected $fillable = ['product_id', 'partner_id', 'transaction_type_id', 'amount', 'created_at'];
+    protected $fillable = [
+        'product_id', 'partner_id', 'transaction_type_id',
+        'amount', 'created_at', 'description',
+    ];
 
     public function getTransactionTypeAttribute()
     {
