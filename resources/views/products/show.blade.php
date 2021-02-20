@@ -25,9 +25,9 @@
         </div>
     </div>
     <div class="col-md-6">
+        @can('update', $product)
         <div class="card">
-            <div class="card-header">title</div>
-            @can('update', $product)
+            <div class="card-header">{{ __('product_stock.add_history') }}</div>
             <div class="card-body">
                 <form action="{{ route('products.stocks.store', $product) }}" method="post">
                     @csrf
@@ -57,8 +57,8 @@
                     </div>
                 </form>
             </div>
-            @endcan
         </div>
+        @endcan
     </div>
 </div>
 <hr>
