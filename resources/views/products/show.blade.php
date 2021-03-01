@@ -53,7 +53,7 @@
                         </div>
                         {!! FormField::textarea('description') !!}
                         <div class="form-group">
-                            {!! Form::submit(__('product.update_stock'), ['class' => 'btn btn-warning']) !!}
+                            {!! Form::submit(__('product.update_stock'), ['class' => 'btn btn-warning mr-2']) !!}
                             {{ link_to_route('products.show', __('app.cancel'), [$product], ['class' => 'btn btn-secondary']) }}
                         </div>
                     {{ Form::close() }}
