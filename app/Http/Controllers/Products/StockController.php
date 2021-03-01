@@ -47,4 +47,22 @@ class StockController extends Controller
 
         return back();
     }
+
+    public function update(Request $request, Product $product, StockHistory $stock)
+    {
+        $transactionTypeString = implode(',', StockHistory::getConstants('TRANSACTION_TYPE'));
+        $stockData = $request->validate([
+            'partner_id'          => 'nullable|exists:partners,id',
+            'transaction_type_id' => 'required|in:'.$transactionTypeString,
+            'amount'              => 'required|numeric',
+            'date'                => 'required|date_format:Y-m-d',
+            'time'                => 'required|date_format:H:i',
+            'description'         => 'nullable|max:255',
+        ]);
+        $dateTime = $request->get('date').' '.$request->get('time').':00';
+        $stockData['created_at'] = $dateTime;
+        $stock->update($stockData);
+
+        return redirect()->route('products.show', $product);
+    }
 }

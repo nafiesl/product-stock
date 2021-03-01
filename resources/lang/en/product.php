@@ -29,6 +29,7 @@ return [
     'undeleteable'   => 'Product data cannot be deleted.',
     'add_stock'      => 'Add Stock',
     'subtract_stock' => 'Subtract Stock',
+    'update_stock'   => 'Update Stock',
 
     // Attributes
     'name'          => 'Product Name',

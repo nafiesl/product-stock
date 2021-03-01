@@ -129,4 +129,45 @@ class ManageProductStocksTest extends BrowserKitTest
             'description'         => 'Testing description',
         ]);
     }
+
+    /** @test */
+    public function user_can_edit_stock_history()
+    {
+        $this->loginAsUser();
+        $product = Product::factory()->create();
+        $partner = Partner::factory()->create();
+        $stockHistory = StockHistory::factory()->create([
+            'transaction_type_id' => StockHistory::TRANSACTION_TYPE_SALES,
+            'partner_id'          => $partner->id,
+            'product_id'          => $product->id,
+            'amount'              => '3',
+            'description'         => 'Testing description',
+        ]);
+
+        $this->visitRoute('products.show', $product);
+        $this->seeText('Testing description');
+        $this->seeElement('a', [
+            'href' => route('products.show', [$product->id, 'action' => 'edit_stock_history', 'stock_history_id' => $stockHistory->id]),
+            'id'   => 'edit_stock-'.$stockHistory->id,
+        ]);
+
+        $this->click('edit_stock-'.$stockHistory->id);
+        $this->submitForm(__('product.update_stock'), [
+            'transaction_type_id' => StockHistory::TRANSACTION_TYPE_PURCHASE,
+            'partner_id'          => $partner->id,
+            'amount'              => '3',
+            'date'                => now()->format('Y-m-d'),
+            'time'                => now()->format('H:i'),
+            'description'         => 'Testing description updated',
+        ]);
+
+        $this->seeInDatabase('stock_histories', [
+            'id'                  => $stockHistory->id,
+            'product_id'          => $product->id,
+            'transaction_type_id' => StockHistory::TRANSACTION_TYPE_PURCHASE,
+            'amount'              => 3,
+            'partner_id'          => $partner->id,
+            'description'         => 'Testing description updated',
+        ]);
+    }
 }

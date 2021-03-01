@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Partner;
 use App\Models\Product;
 use App\Models\ProductUnit;
+use App\Models\StockHistory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -71,10 +72,14 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        $editableStockHistory = null;
         $partners = Partner::orderBy('name')->pluck('name', 'id');
         $stockHistories = $product->stockHistories()->oldest('created_at')->get();
+        if (request('action') == 'edit_stock_history' && request('stock_history_id')) {
+            $editableStockHistory = StockHistory::find(request('stock_history_id'));
+        }
 
-        return view('products.show', compact('product', 'partners', 'stockHistories'));
+        return view('products.show', compact('product', 'partners', 'stockHistories', 'editableStockHistory'));
     }
 
     /**
