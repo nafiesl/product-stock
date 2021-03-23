@@ -74,7 +74,7 @@ class ProductController extends Controller
     {
         $editableStockHistory = null;
         $partners = Partner::orderBy('name')->pluck('name', 'id');
-        $stockHistories = $product->stockHistories()->oldest('created_at')->get();
+        $stockHistories = $product->stockHistories()->oldest('created_at')->with('partner')->get();
         if (request('action') == 'edit_stock_history' && request('stock_history_id')) {
             $editableStockHistory = StockHistory::find(request('stock_history_id'));
         }
