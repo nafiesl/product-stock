@@ -67,14 +67,15 @@ class ProductController extends Controller
     /**
      * Display the specified product.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Product  $product
      * @return \Illuminate\View\View
      */
-    public function show(Product $product)
+    public function show(Request $request, Product $product)
     {
         $editableStockHistory = null;
         $partners = Partner::orderBy('name')->pluck('name', 'id');
-        $stockHistories = $product->stockHistories()->oldest('created_at')->with('partner')->get();
+        $stockHistories = $product->stockHistories()->filterBy($request)->oldest('created_at')->with('partner')->get();
         if (request('action') == 'edit_stock_history' && request('stock_history_id')) {
             $editableStockHistory = StockHistory::find(request('stock_history_id'));
         }

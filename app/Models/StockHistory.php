@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use App\Models\Partner;
+use App\Models\QueryFilters\StockHistoryFilter;
 use App\Traits\ConstantsGetter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class StockHistory extends Model
 {
@@ -40,5 +43,10 @@ class StockHistory extends Model
     public function partner()
     {
         return $this->belongsTo(Partner::class)->withDefault(['name' => 'n/a']);
+    }
+
+    public function scopeFilterBy(Builder $queryBuilder, Request $request)
+    {
+        return (new StockHistoryFilter($queryBuilder))->apply($request);
     }
 }
