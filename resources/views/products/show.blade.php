@@ -102,6 +102,11 @@
         {{ __('product.stock_histories') }} <br>
     </div>
     <div class="card-body">
+        {{ Form::open(['method' => 'get', 'class' => 'form-inline bg-light mb-4 p-3']) }}
+        {!! FormField::select('partner_id', $partners, ['value' => request('partner_id'), 'class' => 'mr-2']) !!}
+        {{ Form::submit(__('app.submit'), ['class' => 'btn btn-info']) }}
+        {{ Form::hidden('action', 'filter') }}
+        {{ Form::close() }}
         <table class="table table-sm table-responsive-sm table-hover">
             <thead>
                 <tr>
@@ -133,8 +138,13 @@
                 @endforeach
                 <tr>
                     <th colspan="3">&nbsp;</th>
-                    <th class="text-right">{{ __('product.current_stock') }}</th>
-                    <th class="text-right">{{ $product->stockHistories->sum('amount') }}</th>
+                    @if (request('action') == 'filter')
+                        <th class="text-right">{{ __('app.total') }}</th>
+                        <th class="text-right">{{ $stockHistories->sum('amount') }}</th>
+                    @else
+                        <th class="text-right">{{ __('product.current_stock') }}</th>
+                        <th class="text-right">{{ $product->stockHistories->sum('amount') }}</th>
+                    @endif
                     <th>&nbsp;</th>
                 </tr>
             </tbody>

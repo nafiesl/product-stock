@@ -9,6 +9,7 @@ return [
     'date_time'         => 'Date Time',
 
     // Actions
+    'submit'                => 'Submit',
     'show'                  => 'View Detail',
     'edit'                  => 'Edit',
     'delete'                => 'Delete',
