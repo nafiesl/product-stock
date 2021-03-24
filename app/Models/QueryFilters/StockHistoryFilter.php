@@ -8,8 +8,15 @@ class StockHistoryFilter extends EloquentFilter
 {
     public function apply(Request $request)
     {
-        // Start filtering here..
+        $this->filterByPartner($request->get('partner_id'));
 
         return $this->queryBuilder;
+    }
+
+    private function filterByPartner($partnerId)
+    {
+        if ($partnerId) {
+            $this->queryBuilder->where('partner_id', $partnerId);
+        }
     }
 }

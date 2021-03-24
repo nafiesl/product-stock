@@ -102,6 +102,10 @@
         {{ __('product.stock_histories') }} <br>
     </div>
     <div class="card-body">
+        {{ Form::open(['method' => 'get', 'class' => 'form-inline bg-light mb-4 p-3']) }}
+        {!! FormField::select('partner_id', $partners, ['value' => request('partner_id'), 'class' => 'mr-2']) !!}
+        {{ Form::submit(__('app.submit'), ['class' => 'btn btn-info']) }}
+        {{ Form::close() }}
         <table class="table table-sm table-responsive-sm table-hover">
             <thead>
                 <tr>
