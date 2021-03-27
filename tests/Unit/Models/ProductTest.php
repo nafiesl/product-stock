@@ -67,6 +67,25 @@ class ProductTest extends TestCase
     }
 
     /** @test */
+    public function a_product_has_get_current_stock_method_accept_date_argument()
+    {
+        $product = Product::factory()->create();
+        StockHistory::factory()->create([
+            'product_id' => $product->id,
+            'amount'     => 4,
+            'created_at' => '2020-01-12 12:12:12',
+        ]);
+
+        StockHistory::factory()->create([
+            'product_id' => $product->id,
+            'amount'     => -1,
+            'created_at' => '2020-01-20 12:12:12',
+        ]);
+        $this->assertEquals($product->getCurrentStock('2020-01-13'), 4);
+        $this->assertEquals($product->getCurrentStock('2020-01-25'), 3);
+    }
+
+    /** @test */
     public function a_product_has_belongs_to_product_unit_relation()
     {
         $productUnit = ProductUnit::factory()->create();

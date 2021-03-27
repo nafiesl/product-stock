@@ -37,9 +37,13 @@ class Product extends Model
         return $this->hasMany(StockHistory::class);
     }
 
-    public function getCurrentStock()
+    public function getCurrentStock($perDate = null)
     {
         $stockHistoryQuery = $this->stockHistories();
+
+        if ($perDate) {
+            return $stockHistoryQuery->where('created_at', '<=', $perDate.' 23:59:59')->sum('amount');
+        }
 
         return $stockHistoryQuery->sum('amount');
     }
