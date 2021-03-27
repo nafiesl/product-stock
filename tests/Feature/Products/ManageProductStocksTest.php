@@ -5,6 +5,7 @@ namespace Tests\Feature\Products;
 use App\Models\Partner;
 use App\Models\Product;
 use App\Models\StockHistory;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\BrowserKitTest;
 
@@ -169,5 +170,70 @@ class ManageProductStocksTest extends BrowserKitTest
             'partner_id'          => $partner->id,
             'description'         => 'Testing description updated',
         ]);
+    }
+
+    /** @test */
+    public function browse_product_stock_history_monthly()
+    {
+        Carbon::setTestNow('2020-02-28');
+        $this->loginAsUser();
+        $product = Product::factory()->create();
+        $partner = Partner::factory()->create();
+        $currentMonthStockHistory = StockHistory::factory()->create([
+            'transaction_type_id' => StockHistory::TRANSACTION_TYPE_SALES,
+            'partner_id'          => $partner->id,
+            'product_id'          => $product->id,
+            'amount'              => '3',
+            'description'         => 'Testing current month description',
+            'created_at'          => '2020-02-20',
+        ]);
+        $lastMonthStockHistory = StockHistory::factory()->create([
+            'transaction_type_id' => StockHistory::TRANSACTION_TYPE_SALES,
+            'partner_id'          => $partner->id,
+            'product_id'          => $product->id,
+            'amount'              => '3',
+            'description'         => 'Testing last month description',
+            'created_at'          => '2020-01-20',
+        ]);
+
+        $this->visitRoute('products.show', $product);
+        $this->seeText($currentMonthStockHistory->description);
+        $this->dontSeeText($lastMonthStockHistory->description);
+        Carbon::setTestNow();
+    }
+
+    /** @test */
+    public function browse_product_stock_history_by_selecting_month_and_year()
+    {
+        Carbon::setTestNow('2020-01-28');
+        $this->loginAsUser();
+        $product = Product::factory()->create();
+        $partner = Partner::factory()->create();
+        $currentMonthStockHistory = StockHistory::factory()->create([
+            'transaction_type_id' => StockHistory::TRANSACTION_TYPE_SALES,
+            'partner_id'          => $partner->id,
+            'product_id'          => $product->id,
+            'amount'              => '3',
+            'description'         => 'Testing current month description',
+            'created_at'          => '2020-01-20',
+        ]);
+        $lastMonthStockHistory = StockHistory::factory()->create([
+            'transaction_type_id' => StockHistory::TRANSACTION_TYPE_SALES,
+            'partner_id'          => $partner->id,
+            'product_id'          => $product->id,
+            'amount'              => '3',
+            'description'         => 'Testing last month description',
+            'created_at'          => '2019-12-20',
+        ]);
+
+        $this->visitRoute('products.show', $product);
+        $this->submitForm(__('app.submit'), [
+            'year'  => '2019',
+            'month' => '12',
+        ]);
+        $this->seeRouteIs('products.show', [$product, 'action' => 'filter', 'month' => '12', 'partner_id' => '', 'year' => '2019']);
+        $this->dontSeeText($currentMonthStockHistory->description);
+        $this->seeText($lastMonthStockHistory->description);
+        Carbon::setTestNow();
     }
 }

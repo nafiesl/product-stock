@@ -104,8 +104,11 @@
     <div class="card-body">
         {{ Form::open(['method' => 'get', 'class' => 'form-inline bg-light mb-4 p-3']) }}
         {!! FormField::select('partner_id', $partners, ['value' => request('partner_id'), 'class' => 'mr-2']) !!}
-        {{ Form::submit(__('app.submit'), ['class' => 'btn btn-info']) }}
+        {!! FormField::select('year', get_years(), ['value' => request('year'), 'class' => 'mr-2']) !!}
+        {!! FormField::select('month', get_months(), ['value' => request('month'), 'class' => 'mr-2']) !!}
+        {{ Form::submit(__('app.submit'), ['class' => 'btn btn-info mr-2']) }}
         {{ Form::hidden('action', 'filter') }}
+        {{ link_to_route('products.show', __('app.reset'), $product, ['class' => 'btn btn-secondary']) }}
         {{ Form::close() }}
         <table class="table table-sm table-responsive-sm table-hover">
             <thead>
