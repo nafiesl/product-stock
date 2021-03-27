@@ -122,6 +122,11 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <th colspan="3">&nbsp;</th>
+                    <th>{{ __('product_stock.starting_stock') }}</th>
+                    <th class="text-right"><span id="last_periode_stock">{{ $startingBalance }}</span></th>
+                </tr>
                 @foreach ($stockHistories as $stockHistory)
                     <tr>
                         <td>{{ $stockHistory->partner->name }}</td>
@@ -141,13 +146,10 @@
                 @endforeach
                 <tr>
                     <th colspan="3">&nbsp;</th>
-                    @if (request('action') == 'filter')
-                        <th class="text-right">{{ __('app.total') }}</th>
-                        <th class="text-right">{{ $stockHistories->sum('amount') }}</th>
-                    @else
-                        <th class="text-right">{{ __('product.current_stock') }}</th>
-                        <th class="text-right">{{ $product->stockHistories->sum('amount') }}</th>
-                    @endif
+                    <th>{{ __('app.total') }}</th>
+                    <th class="text-right">
+                        <span id="current_periode_stock">{{ $startingBalance + $stockHistories->sum('amount') }}</span>
+                    </th>
                     <th>&nbsp;</th>
                 </tr>
             </tbody>

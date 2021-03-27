@@ -6,6 +6,7 @@ use App\Models\Partner;
 use App\Models\Product;
 use App\Models\ProductUnit;
 use App\Models\StockHistory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -78,13 +79,18 @@ class ProductController extends Controller
             'year'  => $request->get('year', now()->format('Y')),
             'month' => $request->get('month', now()->format('m')),
         ]);
+        $firstDateOfMonth = $request->get('year').'-'.$request->get('month').'-01';
+        $theDate = Carbon::parse($firstDateOfMonth)->subDay()->format('Y-m-d');
+        $startingBalance = $product->getCurrentStock($theDate);
         $partners = Partner::orderBy('name')->pluck('name', 'id');
         $stockHistories = $product->stockHistories()->filterBy($request)->oldest('created_at')->with('partner')->get();
         if (request('action') == 'edit_stock_history' && request('stock_history_id')) {
             $editableStockHistory = StockHistory::find(request('stock_history_id'));
         }
 
-        return view('products.show', compact('product', 'partners', 'stockHistories', 'editableStockHistory'));
+        return view('products.show', compact(
+            'product', 'partners', 'stockHistories', 'editableStockHistory', 'startingBalance'
+        ));
     }
 
     /**

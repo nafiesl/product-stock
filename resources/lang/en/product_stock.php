@@ -6,4 +6,5 @@ return [
     'description'             => 'Description',
     'add_history'             => 'Add History',
     'edit_history'            => 'Edit History',
+    'starting_stock'          => 'Starting Stock',
 ];

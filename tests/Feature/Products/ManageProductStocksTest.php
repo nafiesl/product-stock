@@ -191,7 +191,7 @@ class ManageProductStocksTest extends BrowserKitTest
             'transaction_type_id' => StockHistory::TRANSACTION_TYPE_SALES,
             'partner_id'          => $partner->id,
             'product_id'          => $product->id,
-            'amount'              => '3',
+            'amount'              => '32',
             'description'         => 'Testing last month description',
             'created_at'          => '2020-01-20',
         ]);
@@ -199,6 +199,8 @@ class ManageProductStocksTest extends BrowserKitTest
         $this->visitRoute('products.show', $product);
         $this->seeText($currentMonthStockHistory->description);
         $this->dontSeeText($lastMonthStockHistory->description);
+        $this->see('<span id="last_periode_stock">32</span>');
+        $this->see('<span id="current_periode_stock">35</span>');
         Carbon::setTestNow();
     }
 
@@ -234,6 +236,8 @@ class ManageProductStocksTest extends BrowserKitTest
         $this->seeRouteIs('products.show', [$product, 'action' => 'filter', 'month' => '12', 'partner_id' => '', 'year' => '2019']);
         $this->dontSeeText($currentMonthStockHistory->description);
         $this->seeText($lastMonthStockHistory->description);
+        $this->see('<span id="last_periode_stock">0</span>');
+        $this->see('<span id="current_periode_stock">3</span>');
         Carbon::setTestNow();
     }
 }
