@@ -126,6 +126,7 @@
                     <th colspan="3">&nbsp;</th>
                     <th>{{ __('product_stock.starting_stock') }}</th>
                     <th class="text-right"><span id="last_periode_stock">{{ $startingBalance }}</span></th>
+                    <th>&nbsp;</th>
                 </tr>
                 @foreach ($stockHistories as $stockHistory)
                     <tr>
