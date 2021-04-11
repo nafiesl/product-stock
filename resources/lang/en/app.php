@@ -6,6 +6,8 @@ return [
     'total'             => 'Total',
     'action'            => 'Actions',
     'show_detail_title' => 'View :name :type detail',
+    'day'               => 'Day',
+    'date'              => 'Date',
     'date_time'         => 'Date Time',
 
     // Actions

@@ -115,7 +115,8 @@
                 <tr>
                     <th>{{ __('partner.partner') }}</th>
                     <th class="text-center">{{ __('product_stock.transaction_type') }}</th>
-                    <th>{{ __('app.date_time') }}</th>
+                    <th class="text-center">{{ __('app.day') }}</th>
+                    <th class="text-center">{{ __('app.date') }}</th>
                     <th>{{ __('product_stock.description') }}</th>
                     <th class="text-right">{{ __('product.amount') }} ({{ $product->unit->title }})</th>
                     <th class="text-center">{{ __('app.action') }}</th>
@@ -123,7 +124,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <th colspan="3">&nbsp;</th>
+                    <th colspan="4">&nbsp;</th>
                     <th>{{ __('product_stock.starting_stock') }}</th>
                     <th class="text-right"><span id="last_periode_stock">{{ $startingBalance }}</span></th>
                     <th>&nbsp;</th>
@@ -132,7 +133,8 @@
                     <tr>
                         <td>{{ $stockHistory->partner->name }}</td>
                         <td class="text-center">{{ $stockHistory->transaction_type }}</td>
-                        <td>{{ $stockHistory->created_at }}</td>
+                        <td class="text-center">{{ $stockHistory->created_at->format('D') }}</td>
+                        <td class="text-center">{{ $stockHistory->created_at->format('d-M') }}</td>
                         <td>{{ $stockHistory->description }}</td>
                         <td class="text-right">{{ $stockHistory->amount }}</td>
                         <td class="text-center">
@@ -146,7 +148,7 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <th colspan="3">&nbsp;</th>
+                    <th colspan="4">&nbsp;</th>
                     <th>{{ __('app.total') }}</th>
                     <th class="text-right">
                         <span id="current_periode_stock">{{ $startingBalance + $stockHistories->sum('amount') }}</span>
