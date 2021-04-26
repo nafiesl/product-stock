@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('product.detail'))
+@section('title', __('product.detail').' - '.$product->name)
 
 @section('content')
 <div class="row justify-content-center">
