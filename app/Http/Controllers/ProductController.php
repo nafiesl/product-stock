@@ -76,8 +76,8 @@ class ProductController extends Controller
     {
         $editableStockHistory = null;
         $request->merge([
-            'year'  => $request->get('year', now()->format('Y')),
-            'month' => $request->get('month', now()->format('m')),
+            'year'  => $request->get('year') ?: now()->format('Y'),
+            'month' => $request->get('month') ?: now()->format('m'),
         ]);
         $firstDateOfMonth = $request->get('year').'-'.$request->get('month').'-01';
         $theDate = Carbon::parse($firstDateOfMonth)->subDay()->format('Y-m-d');
