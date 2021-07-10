@@ -233,7 +233,7 @@ class ManageProductStocksTest extends BrowserKitTest
             'year'  => '2019',
             'month' => '12',
         ]);
-        $this->seeRouteIs('products.show', [$product, 'action' => 'filter', 'month' => '12', 'partner_id' => '', 'year' => '2019']);
+        $this->seeRouteIs('products.show', [$product, 'action' => 'filter', 'month' => '12', 'partner_id' => '', 'search_query' => '', 'year' => '2019']);
         $this->dontSeeText($currentMonthStockHistory->description);
         $this->seeText($lastMonthStockHistory->description);
         $this->see('<span id="last_periode_stock">0</span>');

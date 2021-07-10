@@ -12,6 +12,7 @@ class StockHistoryFilter extends EloquentFilter
         $month = $request->get('month');
         $this->filterByYearMonth($year, $month);
         $this->filterByPartner($request->get('partner_id'));
+        $this->filterBySearchQuery($request->get('search_query'));
 
         return $this->queryBuilder;
     }
@@ -19,6 +20,13 @@ class StockHistoryFilter extends EloquentFilter
     private function filterByYearMonth($year, $month)
     {
         $this->queryBuilder->where('created_at', 'like', $year.'-'.$month.'%');
+    }
+
+    private function filterBySearchQuery($searchQuery)
+    {
+        if ($searchQuery) {
+            $this->queryBuilder->where('description', 'like', '%'.$searchQuery.'%');
+        }
     }
 
     private function filterByPartner($partnerId)
