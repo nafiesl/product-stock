@@ -106,7 +106,7 @@
         {!! FormField::text('search_query', ['value' => request('search_query'), 'placeholder' => __('product_stock.description'), 'label' => false, 'class' => 'mr-2']) !!}
         {!! FormField::select('partner_id', $partners, ['value' => request('partner_id'), 'class' => 'mr-2']) !!}
         {!! FormField::select('year', get_years(), ['value' => request('year'), 'class' => 'mr-2']) !!}
-        {!! FormField::select('month', get_months(), ['value' => request('month'), 'class' => 'mr-2']) !!}
+        {!! FormField::select('month', get_months(), ['value' => request('month'), 'placeholder' => __('time.all_months'), 'label' => false, 'class' => 'mr-2']) !!}
         {{ Form::submit(__('app.submit'), ['class' => 'btn btn-info mr-2']) }}
         {{ Form::hidden('action', 'filter') }}
         {{ link_to_route('products.show', __('app.reset'), $product, ['class' => 'btn btn-secondary']) }}

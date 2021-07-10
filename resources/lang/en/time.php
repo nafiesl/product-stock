@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'all_months' => 'All Months',
     'months' => [
         '01' => 'January',
         '02' => 'Februari',
