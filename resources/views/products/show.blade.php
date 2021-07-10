@@ -111,7 +111,7 @@
         {{ Form::hidden('action', 'filter') }}
         {{ link_to_route('products.show', __('app.reset'), $product, ['class' => 'btn btn-secondary']) }}
         {{ Form::close() }}
-        <table class="table table-sm table-responsive-sm table-hover">
+        <table class="table table-sm table-responsive-sm table-striped table-hover">
             <thead>
                 <tr>
                     <th>{{ __('partner.partner') }}</th>
