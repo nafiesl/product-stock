@@ -107,9 +107,11 @@
         {!! FormField::select('partner_id', $partners, ['value' => request('partner_id'), 'placeholder' => __('partner.partner'), 'label' => false, 'class' => 'mr-2']) !!}
         {!! FormField::select('year', get_years(), ['value' => request('year'), 'placeholder' => __('time.year'), 'label' => false, 'class' => 'mr-2']) !!}
         {!! FormField::select('month', get_months(), ['value' => request('month'), 'placeholder' => __('time.all_months'), 'label' => false, 'class' => 'mr-2']) !!}
-        {{ Form::submit(__('app.submit'), ['class' => 'btn btn-info mr-2']) }}
-        {{ Form::hidden('action', 'filter') }}
-        {{ link_to_route('products.show', __('app.reset'), $product, ['class' => 'btn btn-secondary']) }}
+        <div class="form-group">
+            {{ Form::submit(__('app.submit'), ['class' => 'btn btn-info mr-2']) }}
+            {{ Form::hidden('action', 'filter') }}
+            {{ link_to_route('products.show', __('app.reset'), $product, ['class' => 'btn btn-secondary']) }}
+        </div>
         {{ Form::close() }}
         <table class="table table-sm table-responsive-sm table-striped table-hover">
             <thead>
