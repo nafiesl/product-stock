@@ -103,7 +103,7 @@
     </div>
     <div class="card-body">
         {{ Form::open(['method' => 'get', 'class' => 'form-inline bg-light mb-4 p-3']) }}
-        {!! FormField::text('search_query', ['value' => request('search_query'), 'placeholder' => __('product_stock.description'), 'label' => false, 'class' => 'mr-2']) !!}
+        {!! FormField::text('search_query', ['value' => request('search_query'), 'placeholder' => __('product_stock.search'), 'label' => false, 'class' => 'mr-2']) !!}
         {!! FormField::select('partner_id', $partners, ['value' => request('partner_id'), 'placeholder' => __('partner.partner'), 'label' => false, 'class' => 'mr-2']) !!}
         {!! FormField::select('year', get_years(), ['value' => request('year'), 'placeholder' => __('time.year'), 'label' => false, 'class' => 'mr-2']) !!}
         {!! FormField::select('month', get_months(), ['value' => request('month'), 'placeholder' => __('time.all_months'), 'label' => false, 'class' => 'mr-2']) !!}
