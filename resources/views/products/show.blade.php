@@ -42,7 +42,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                {!! FormField::select('transaction_type_id', config('product_stock.transaction_types'), ['placeholder' => 'Select']) !!}
+                                {!! FormField::radios('transaction_type_id', config('product_stock.transaction_types'), ['placeholder' => 'Select']) !!}
                             </div>
                             <div class="col-md-4">
                                 {!! FormField::text('date', ['type' => 'date', 'value' => old('date', $editableStockHistory->created_at->format('Y-m-d'))]) !!}
@@ -75,7 +75,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                {!! FormField::select('transaction_type_id', config('product_stock.transaction_types'), ['placeholder' => 'Select']) !!}
+                                {!! FormField::radios('transaction_type_id', config('product_stock.transaction_types'), ['placeholder' => 'Select']) !!}
                             </div>
                             <div class="col-md-4">
                                 {!! FormField::text('date', ['type' => 'date', 'value' => old('date', now()->format('Y-m-d'))]) !!}
